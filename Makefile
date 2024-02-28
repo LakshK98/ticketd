@@ -1,5 +1,6 @@
 LIBUV_BRANCH=v1.18.0
 LIBH2O_BRANCH=v2.2.4
+LIBUV_BRANCH_VERSION=1.18.0
 
 letsbuildthis:
 	python waf configure
@@ -9,7 +10,7 @@ clean:
 	python waf clean
 
 libh2o_build:
-	cd deps/h2o && cmake . -DCMAKE_INCLUDE_PATH=../libuv/include -DLIBUV_LIBRARIES=1 -DOPENSSL_INCLUDE_DIR=/usr/local/opt/openssl/include
+	cd deps/h2o && cmake . -DCMAKE_INCLUDE_PATH=../libuv/include -DLIBUV_LIBRARIES=1 -DOPENSSL_INCLUDE_DIR=/usr/local/opt/openssl/include -DLIBUV_VERSION=$(LIBUV_BRANCH_VERSION)
 	cd deps/h2o && make libh2o
 	cp deps/h2o/libh2o.a .
 .PHONY : libh2o_build
